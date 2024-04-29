@@ -3,7 +3,7 @@ package sg.edu.np.mad.madpractical3;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
-
         // Intialize a new User object
         User user = new User("John Doe", "MAD Developer", 1, false);
 
@@ -33,14 +31,22 @@ public class MainActivity extends AppCompatActivity {
         TextView tvDescription = findViewById(R.id.tvDescription);
         Button btnFollow = findViewById(R.id.btnFollow);
 
-        //Onclick listener to change to unfollow
+        // Onclick listener to change button text and show toast
         btnFollow.setOnClickListener(v -> {
-            if (btnFollow.getText() == "Follow"){
-                btnFollow.setText("Unfollow");
+            String newButtonText;
+            CharSequence toastText;
+
+            if (btnFollow.getText().toString().equals("Follow")) {
+                newButtonText = "Unfollow";
+                toastText = "Followed";
+            } else {
+                newButtonText = "Follow";
+                toastText = "Unfollowed";
             }
-            else{
-                btnFollow.setText("Follow");
-            }
+
+            btnFollow.setText(newButtonText);
+            int duration = Toast.LENGTH_SHORT;
+            Toast.makeText(this, toastText, duration).show();
         });
 
         // Set the TextViews with the User's name, description, default button message
