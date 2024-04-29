@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set the TextViews with the User's name, description, default button message
-        tvName.setText(user.name);
+        int randomInteger = getIntent().getIntExtra("randomInteger", 0);
+        tvName.setText(user.name + " " + randomInteger);
         tvDescription.setText(user.description);
     }
 }

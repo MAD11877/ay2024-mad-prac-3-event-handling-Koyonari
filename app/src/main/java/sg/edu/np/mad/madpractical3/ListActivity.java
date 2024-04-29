@@ -3,14 +3,15 @@ package sg.edu.np.mad.madpractical3;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
-import android.widget.Button;
 import android.widget.ImageView;
-
+import java.util.Random;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.content.Intent;
+
 
 public class ListActivity extends AppCompatActivity {
 
@@ -39,6 +40,10 @@ public class ListActivity extends AppCompatActivity {
             // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
             builder.setPositiveButton("View", (DialogInterface.OnClickListener) (dialog, which) -> {
                 dialog.cancel();
+                int rnum = new Random().nextInt(99999);
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                intent.putExtra("randomInteger", rnum); // Pass random integer as extra
+                startActivity(intent); // Launch MainActivity
             });
             // Create the Alert dialog
             AlertDialog alertDialog = builder.create();
